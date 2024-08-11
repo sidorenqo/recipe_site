@@ -2,9 +2,14 @@ import React from 'react';
 import styles from './Content.module.scss'
 import Widget from "../Widget/Widget";
 import Container from "../Container/Container";
+import CardOpen from "../Card/CardOpen";
 
 
-const Content = () => {
+const Content = (props) => {
+	
+	
+	const [cardOpened, setCardOpened] = React.useState(false);
+	
 	return (
 			<div className={styles.content}>
 				<div className={styles.sidebar}>
@@ -24,7 +29,11 @@ const Content = () => {
 						<button>Мне повезёт!</button>
 					</div>
 				</div>
-				<Container/>
+				
+				{cardOpened && <CardOpen onCloseCard={() => setCardOpened(false)}/>}
+				
+				<Container onClickCard={() => setCardOpened(true)}
+				           />
 			</div>
 	)
 }

@@ -1,8 +1,23 @@
 import React from 'react';
 import styles from './Container.module.scss'
 import Card from "../Card/Card";
+import CardOpen from "../Card/CardOpen";
 
-const Container = () => {
+// const recipe = [{id: 1, name: '', image: '', prepTimeMinutes: '', difficulty: '', cuisine: '', mealType: ''}]
+
+
+const Container = (props) => {
+	
+	const [recipes, setRecipes] = React.useState([])
+	
+	React.useEffect(() => {
+		fetch('https://dummyjson.com/recipes')
+				.then((res) =>  res.json())
+				.then((json) => {setRecipes(json)});
+	},[])
+	
+	
+	
 		return (
 				<div className={styles.container}>
 					<div className={styles.containerHeader}>
@@ -10,19 +25,42 @@ const Container = () => {
 						<p>299</p>
 					</div>
 					
-					<div className={styles.test}>
-						
-						<Card/>
-						<Card/>
-						<Card/>
+					<div className={styles.cardsWrapper}>
+						{Object.values(recipes).map((obj) => (
+								<Card
+										
+										// key={obj.id}
+										// id={recipe.id}
+								      name={obj.name}
+								      image={obj.image}
+								      prepTimeMinutes={obj.prepTimeMinutes}
+								      difficulty={obj.difficulty}
+								      cuisine={obj.cuisine}
+								      mealType={obj.mealType}
+								      onClickCard={props.onClickCard}
+											/>
+						))}
 						
 					</div>
 					
 					
-
+					<div className={styles.pag}>
+					<nav aria-label="pagination">
+						<ul className={styles.pagination}>
+							<li><a href="#"><span aria-hidden="true">«</span><span
+									className="visuallyHidden"></span></a></li>
+							<li><a href="#"><span className={styles.visuallyHidden}>page </span>1</a></li>
+							<li><a href="#" aria-current="page"><span className={styles.visuallyHidden}>page </span>2</a></li>
+							<li><a href="#"><span className={styles.visuallyHidden}>page </span>3</a></li>
+							<li><a href="#"><span className={styles.visuallyHidden}>page </span>4</a></li>
+							<li><a href="#"><span className={styles.visuallyHidden}>next set of pages</span><span aria-hidden="true">»</span></a>
+							</li>
+						</ul>
+					</nav>
 					</div>
-
-			
+				</div>
+		
+		
 		)
 }
 export default Container;

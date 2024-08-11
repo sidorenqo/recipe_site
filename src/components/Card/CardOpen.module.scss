@@ -1,0 +1,23 @@
+.wrapper {
+  @apply w-[1920px] h-[960px] bg-gray-200 flex flex-row;
+
+  .headerName {
+    @apply py-4 px-6 w-[1896px] h-[72px] bg-white ;
+      h2 {
+        @apply text-blue-300
+      }
+  }
+  .leftBlock {
+    @apply basis-1/4
+  }
+
+  .middleBlock {
+
+    @apply basis-1/4
+  }
+
+
+  .rightBlock {
+    @apply basis-1/2
+  }
+}

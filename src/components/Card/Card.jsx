@@ -1,20 +1,23 @@
 import React from 'react';
 import styles from './Card.module.scss'
 
-const Card = props => {
+function Card(props) {
+	
+const [isOpenCart, setIsOpenCart] = React.useState(false);
+
 	return  (
 			
-			<div className={styles.cardWrapper}>
+			<div className={styles.cardWrapper} onClick={props.onClickCard}>
 				<div className={styles.section}>
 					<div className={styles.cardHeader}>
-						<h3>Наименование блюда</h3>
+						<h3>{props.name}</h3>
 					</div>
 					<div className={styles.cardImage}>
-						<img src="/img/photo.jpg" alt="recipe"/>
+						<img src={props.image} alt="recipe"/>
 					</div>
 				</div>
 				<div className={styles.cardDescription}>
-					<p>Традиционное итальянское блюдо, изначально в виде круглой дрожжевой лепёшки, выпекаемой с уложенной сверху начинкой из томатного соуса, сыра и зачастую других ингредиентов, таких как мясо, овощи, грибы и прочие продукты. Небольшую пиццу иногда называют пиццеттой.</p>
+					<p>Традиционное итальянское блюдо, изначально в виде круглой дрожжевой лепёшки, выпекаемой с уложенной сверху начинкой из томатного соуса,сыра и зачастую других ингредиентов, таких как мясо, овощи, грибы и прочие продукты. Небольшую пиццу иногда называют пиццеттой.</p>
 					<div className={styles.cookingTime}>
 						<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<path
